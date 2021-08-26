@@ -15,8 +15,6 @@
   position: relative;
   margin-top: 160px;
   transition: transform 1s;
-  animation: phoneSlide 2s infinite;
-  animation-timing-function: ease;
 }
 
 .content__animation::after {
@@ -51,11 +49,18 @@
   top: 0;
   left: 0;
   z-index: 2;
+  animation: 2s linear 1s infinite alternate phoneSlideUp;
 }
 
 .content__phone--blue {
   right: 0;
   top: 0;
+  animation: 2s linear 1s infinite alternate phoneSlideDown;
+}
+
+.content__phone--red,
+.content__phone--blue {
+  transition: transform 1s;
 }
 
 .content__title {
@@ -65,18 +70,28 @@
   padding-bottom: 80px;
 }
 
-.content__link {
+.content__link-title {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-size: 12px;
   line-height: 24px;
   position: relative;
   text-align: left;
+  color: $basic-white;
 }
 
-.link {
+.link-title {
   margin-right: 4px;
   text-decoration: underline;
+  color: $basic-white;
+}
+
+.link-title:hover {
+  color: $basic-red;
+}
+
+.link-title--ios:hover {
+  color: $basic-blue;
 }
 
 .content__links {
@@ -87,6 +102,8 @@
   width: 80px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .content__link-wrapper + .content__link-wrapper {
@@ -188,14 +205,19 @@
   }
 }
 
-
-@keyframes phoneSlide {
+@keyframes phoneSlideUp {
   0% {
-    transform: translateY(40px);
+    transform: translateY(0);
   }
 
-  50% {
-    transform: translateY(-40px);
+  100% {
+    transform: translateY(-50px);
+  }
+}
+
+@keyframes phoneSlideDown {
+  0% {
+    transform: translateY(0);
   }
 
   100% {
